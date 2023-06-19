@@ -11,5 +11,17 @@
 
   <body>
     <%= yield %>
+<header>
+  <nav>
+    <%= form_tag("/login", method: "post") do %>
+      <%= submit_tag "Log in" %>
+    <% end %>
+
+    <%= form_tag("/signup", method: "post") do %>
+      <%= submit_tag "Sign up" %>
+    <% end %>
+  </nav>
+</header>
+
   </body>
 </html>
