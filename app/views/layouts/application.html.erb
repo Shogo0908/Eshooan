@@ -10,9 +10,8 @@
   </head>
 
   <body>
-    <%= yield %>
 <header>
-トップページ
+
   <nav>
     <%= form_tag("/login", method: "post") do %>
       <%= submit_tag "Log in" %>
@@ -23,6 +22,12 @@
     <% end %>
   </nav>
 </header>
+
+<main>
+  <%= yield %>
+</main>
+
+
 
   </body>
 </html>
