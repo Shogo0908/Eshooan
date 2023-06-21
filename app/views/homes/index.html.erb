@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eshooan</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+
+  <main>
+    <!-- Schedule will go here -->
+<p id="notice"><%= notice %></p>
+
+<div class="toppage">
+<h1 class="top">週案管理アプリ</h1>
+<br>
+
+<div class="row">
+<div class="col-md-4">
+	<div class="schedule">今後の予定一覧</div>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>タイトル</th>
+      <th>日程</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @homes.each do |home| %>
+      <tr>
+        <td><%= link_to home.title , home %></td>
+        <td><%= home.start_time.strftime("%m-%d") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_with(model: @home, local: true) do |form| %>
+
+  <div class="title">
+    <div class="form-tag">タイトル</div>
+    <%= form.text_field :title %>
+  </div>
+ <div class="content">
+    <div class="form-tag">内容</div>
+    <%= form.text_field :content %>
+  </div>
+
+    <div class="time">
+    <div class="form-tag">時間</div>
+    <%= form.datetime_select :start_time %>
+  </div>
+
+ <div class="submit">
+    <%= form.submit %>
+ </div>
+<% end %>
+</div>
+
+<br>
+
+
+<br>
+<div class="col-md-8">
+<%= month_calendar events: @homes do |date, homes| %>
+  <%= date.day %>
+
+  <% homes.each do |home| %>
+    <div>
+      <%= link_to home.title, home %>
+    </div>
+  <% end %>
+<% end %>
+</div>
+</div>
+</div>
+
+
+  </main>
+</body>
+</html>
