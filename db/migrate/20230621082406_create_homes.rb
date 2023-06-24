@@ -5,6 +5,7 @@ class CreateHomes < ActiveRecord::Migration[6.0]
       t.text :content
       t.datetime :start_time
       t.timestamps
+
     end
   end
 end
